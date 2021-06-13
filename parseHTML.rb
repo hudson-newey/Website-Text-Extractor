@@ -3,9 +3,7 @@ def convertToString(text)
 end
 
 def removeArtifacts(text)
-    # /<.+?>.+?<\/.+?>/
-
-    text = text.to_enum(:scan, /<.+?>.+?<\/.+?>/).map { Regexp.last_match }
+    text = text.to_enum(:scan, /.+?/).map { Regexp.last_match }
     text = convertToString(text)
 
     text = text.gsub("<", "")
