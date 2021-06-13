@@ -3,6 +3,11 @@ def convertToString(text)
 end
 
 def removeArtifacts(text)
+    # /<.+?>.+?<\/.+?>/
+
+    text = text.to_enum(:scan, /<.+?>.+?<\/.+?>/).map { Regexp.last_match }
+    text = convertToString(text)
+
     text = text.gsub("<", "")
     text = text.gsub(">", "")
 
@@ -10,7 +15,7 @@ def removeArtifacts(text)
 end
 
 def findText(websiteHTML)
-    @artifactRules = [/<script.+?>.+?</, /<script.+?>/, /<style.+?>.+?</]
+    @artifactRules = [/<script.+?>.+?</, /<script.+?>(.+?<)*/, /<style.+?>.+?<\/style>/]
     # remove all artifacts from the html source
     @artifactRules.each do |rule|
         @foundScriptTags = websiteHTML.to_enum(:scan, rule).map { Regexp.last_match }
