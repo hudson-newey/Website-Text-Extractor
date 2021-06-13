@@ -11,7 +11,7 @@ require "./files.rb"
 @websiteText = findText(@websiteHTML)
 
 # write the contents of the webpage to a file
-writeToFile(@websiteFormalised + ".txt", @websiteText)
+writeToFile("./out/#{@websiteFormalised}.txt", @websiteText)
 puts "Program Completed Successfully!"
 
 # end program

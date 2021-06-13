@@ -1,5 +1,13 @@
+require "fileutils"
+
+def createDirectory(dirName)
+    FileUtils.mkdir_p dirName
+end
+
 # write contents to a pre-determained file
 def writeToFile(fileName, contents)
+    createDirectory("out")
+
     # define that any existing files should be overwritten
     filePointer = File.new(fileName, "w")
 
